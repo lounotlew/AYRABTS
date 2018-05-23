@@ -1,4 +1,4 @@
-# All Your Restaurants Are Belong To Us - Simple Interface for Downloading Yelp API Data
+# All Your Restaurants Are Belong To Us - Simple and Intuitive App for Downloading Yelp API Data
 > App. written by Lewis Kim; Yelp API fetch/request functions borrowed from online sources (see files for authors).
 
 ### Description
