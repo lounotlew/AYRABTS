@@ -1,5 +1,5 @@
 # ==============================================================
-# All Your Restaurants Are Belong to Us
+# All Your Restaurant Are Belong to Us
 # Simply write Yelp API business search, lookup, and review
 # data to a .csv file.
 
@@ -21,7 +21,7 @@ source('utils/functions.R')
 
 ui <- shinyUI(fluidPage(
   
-  titlePanel(title = h3("All Your Restaurants Are Belong to Us - Yelp API to .csv", align="left")),
+  titlePanel(title = h3("All Your Restaurant Are Belong to Us - Interactive Yelp Data Downloader", align="left")),
   
   # Inputs for business search tab (tab 1).
   sidebarPanel(
@@ -51,7 +51,7 @@ ui <- shinyUI(fluidPage(
                      textInput("csv_filepath1", label=".csv filepath (default: output/search/yelpsearchdata.csv)",
                                value = "output/search/yelpsearchdata.csv"),
                      
-                     actionButton("writecsv1", label = "Write Data Frame to .csv")
+                     downloadButton("writecsv1", label = "Download Data Frame as .csv")
                      ),
     
     # Inputs for business lookup tab (tab 2).
@@ -63,7 +63,7 @@ ui <- shinyUI(fluidPage(
                      textInput("csv_filepath2", label=".csv filepath (default: output/lookup/yelplookupdata.csv)",
                                value = "output/lookup/yelplookupdata.csv"),
                      
-                     actionButton("writecsv2", label = "Write Data Frame to .csv")
+                     downloadButton("writecsv2", label = "Download Data Frame as .csv")
                      ),
     
     # Inputs for business hours tab (tab 3).
@@ -75,7 +75,7 @@ ui <- shinyUI(fluidPage(
                      textInput("csv_filepath3", label=".csv filepath (default: output/hours/hoursdata.csv)",
                                value = "output/hours/hoursdata.csv"),
                      
-                     actionButton("writecsv3", label = "Write Data Frame to .csv")
+                     downloadButton("writecsv3", label = "Download Data Frame as .csv")
                      
                      ),
     
@@ -88,12 +88,12 @@ ui <- shinyUI(fluidPage(
                      textInput("csv_filepath4", label=".csv filepath (default: output/reviews/reviewdata.csv)",
                                value = "output/reviews/reviewdata.csv"),
                      
-                     actionButton("writecsv4", label = "Write Data Frame to .csv"),
+                     downloadButton("writecsv4", label = "Download Data Frame as .csv"),
                      
                      textInput("txt_filepath", label=".txt filepath (default: output/reviews/reviews.txt)",
                                value = "output/reviews/reviews.txt"),
                      
-                     actionButton("writetxt", label = "Write Reviews to .txt")
+                     downloadButton("writetxt", label = "Download Reviews as .txt")
                      ),
     
     # Inputs for app. notes tab (tab 5).
@@ -173,47 +173,51 @@ server <- function(input, output) {
     HTML(paste(offsetNotEmpty, needsWork1, explainHours, sep="<br/>"))
   })
   
-  # Writes business search data into a .csv file following given filepath.
-  observeEvent(input$writecsv1, {
-    write.csv(searchdata(), input$csv_filepath1)
-    showNotification("Write Successful (Previous file may have been overwritten if filepath 
-                     was not renamed)",
-                     duration = 5)
-  })
+  # Downloads business search data into a .csv file.
+  output$writecsv1 <- downloadHandler(
+    filename = "business_search.csv",
+    
+    content = function(file) {
+      write.csv(searchdata(), file)
+    }
+  )
 
-  # Writes business lookup data into a .csv file following given filepath.
-  observeEvent(input$writecsv2, {
-    write.csv(lookupdata(), input$csv_filepath2)
-    showNotification("Write Successful (Previous file may have been overwritten if filepath 
-                     was not renamed)",
-                     duration = 5)
-  })
+  # Downloads business lookup data into a .csv file.
+  output$writecsv2 <- downloadHandler(
+    filename = "business_lookup.csv",
+    
+    content = function(file) {
+      write.csv(lookupdata(), file)
+    }
+  )
   
-  # Writes business hours data into a .csv file following given filepath.
-  observeEvent(input$writecsv3, {
-    write.csv(hoursdata(), input$csv_filepath3)
-    showNotification("Write Successful (Previous file may have been overwritten if filepath 
-                     was not renamed)",
-                     duration = 5)
-  })
+  # Downloads business hours data into a .csv file.
+  output$writecsv3 <- downloadHandler(
+    filename = "business_hours.csv",
+    
+    content = function(file) {
+      write.csv(hoursdata(), file)
+    }
+  )
   
-  # Writes business reviews data into a .csv file following given filepath.
-  observeEvent(input$writecsv4, {
-    write.csv(reviewdata(), input$csv_filepath4)
-    showNotification("Write Successful (Previous file may have been overwritten if filepath 
-                     was not renamed)",
-                     duration = 5)
-  })
+  # Downloads business reviews data into a .csv file.
+  output$writecsv4 <- downloadHandler(
+    filename = "business_reviews.csv",
+    
+    content = function(file) {
+      write.csv(reviewdata(), file)
+    }
+  )
   
   # Writes the reviews column (in business reviews data) into a .txt file following given filepath.
   # Note: Needs improvement/rewrite for better text formatting in .txt file.
-  observeEvent(input$writetxt, {
-    write.table(reviewdata()$text, file = input$txt_filepath, sep = "\n",
-                row.names = FALSE)
-    showNotification("Write Successful (Previous file may have been overwritten if filepath 
-                     was not renamed)",
-                     duration = 5)
-  })
+  output$writetxt <- downloadHandler(
+    filename = "business_reviews.txt",
+    
+    content = function(file) {
+      write.csv(reviewdata()$text, file)
+    }
+  )
 }
 
 # Run the application.

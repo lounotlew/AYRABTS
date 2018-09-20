@@ -8,8 +8,8 @@ require(tidyverse)
 require(httr)
 
 # Client ID and API Key:
-# client_id <- YOUR ID
-# api_key <- YOUR KEY
+client_id <- ""
+api_key <- ""
 
 # Fetching Yelp Business Search Data; returns a data frame.
 yelp_business_search <- function(term = NULL, location = NULL, 

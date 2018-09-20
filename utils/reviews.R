@@ -9,8 +9,8 @@ require(httr)
 require(tibble)
 
 # Client ID and API Key:
-# client_id <- YOUR ID
-# api_key <- YOUR KEY
+client_id <- ""
+api_key <- ""
 
 # Supported locales for Yelp reviews (param LOCALES for Yelp API).
 SUPPORTED_LOCALES <- c("cs_CZ", "da_DK", "de_AT", "de_CH", "de_DE", "en_AU",
