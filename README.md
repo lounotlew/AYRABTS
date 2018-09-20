@@ -5,7 +5,7 @@
 
 All Your Restaurant Are Belong To Us (AYRABTS) is a small-scale ``shiny`` web app with a simple, intuitive interface that allows you to filter and write the data from Yelp Business Search, Business Lookup, Business Hours, and Business Reviews into .csv and .txt files (writes locally into /output folder). Currently, AYRABTS is not published onto any web domain, and requires the same file/directory structure to function properly; but, this can easily be changed in the code to work in other situations. Additionally, the richness of business reviews data (and to a degree, business search) is limited due to Yelp's API restrictions (returns a maximum of 3 reviews for business reviews).
 
-For a GUI sample and applet walkthrough, click this [link](gui_sample/README.md).
+For a GUI sample and app walkthrough, click this [link](gui_sample/README.md).
 
 ### Installation
 
