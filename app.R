@@ -21,7 +21,7 @@ source('utils/functions.R')
 
 ui <- shinyUI(fluidPage(
   
-  titlePanel(title = h3("All Your Restaurant Are Belong to Us - Interactive Yelp Data Downloader", align="left")),
+  titlePanel(title = h3("All Your Restaurant Are Belong to Us - Interactive Yelp Data Downloader", align="left"), windowTitle = "All Your Restaurant Are Belong to Us"),
   
   # Inputs for business search tab (tab 1).
   sidebarPanel(
@@ -58,7 +58,7 @@ ui <- shinyUI(fluidPage(
     conditionalPanel(condition = 'input.tabselected==2', h4("Business Lookup"),
                      
                      textInput("lid", label = "Business ID (Use Business Search to get specific ID):",
-                               value = "taco-bell-berkeley-2"),
+                               value = "e1M54l13zB_BInpIE3VUkQ"),
                      
                      textInput("csv_filepath2", label=".csv filepath (default: output/lookup/yelplookupdata.csv)",
                                value = "output/lookup/yelplookupdata.csv"),
@@ -70,7 +70,7 @@ ui <- shinyUI(fluidPage(
     conditionalPanel(condition = 'input.tabselected==3', h4("Business Hours"),
                      
                      textInput("bid", label = "Business ID (Use Business Search to get specific ID):",
-                               value = "taco-bell-berkeley-2"),
+                               value = "e1M54l13zB_BInpIE3VUkQ"),
                      
                      textInput("csv_filepath3", label=".csv filepath (default: output/hours/hoursdata.csv)",
                                value = "output/hours/hoursdata.csv"),
@@ -83,7 +83,7 @@ ui <- shinyUI(fluidPage(
     conditionalPanel(condition = 'input.tabselected==4', h4("Business Reviews (Max. 3 by Yelp API Default)"),
                      
                      textInput("rid", label = "Business ID (Use Business Search to get specific ID):",
-                               value = "taco-bell-berkeley-2"),
+                               value = "e1M54l13zB_BInpIE3VUkQ"),
                      
                      textInput("csv_filepath4", label=".csv filepath (default: output/reviews/reviewdata.csv)",
                                value = "output/reviews/reviewdata.csv"),
